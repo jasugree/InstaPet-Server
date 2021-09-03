@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
 // Option 1: Passing parameters separately
-const sequelize = new Sequelize("InstaPet", "postgres", "eleven11F!fty50", {
+const sequelize = new Sequelize("InstaPet", "postgres", "password", {
 	host: "localhost",
 	dialect: "postgres",
 });
