@@ -1,13 +1,16 @@
 let router = require("express").Router();
 const User = require("../db").import("../models/user");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 /* REGISTER END POINT --->Allows a new user to be created with a username and password.
  */
 router.post("/create", function (req, res) {
 	User.create({
+		firstName: req.body.user.firstName,
+		lastName: req.body.user.lastName,
 		email: req.body.user.email,
-		password: req.body.user.password,
+		password: bcrypt.hashSync(req.body.user.password, 13),
 	})
 		.then(function createSuccess(user) {
 			let token = jwt.sign(
