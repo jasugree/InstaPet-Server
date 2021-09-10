@@ -8,6 +8,8 @@ router.get("/practice", validateSession, function (req, res) {
 	res.send("hey! This is a practice route!");
 });
 
+console.log("postcontroller, line 11");
+
 /*CREATING A POST*/
 router.post("/create", validateSession, function (req, res) {
 	const postEntry = {
@@ -22,12 +24,16 @@ router.post("/create", validateSession, function (req, res) {
 		.catch((err) => res.status(500).json({ error: err }));
 });
 
+console.log("post controller, line 27");
+
 /*VIEW ALL POSTS*/
 router.get("/", function (req, res) {
 	Post.findAll()
 		.then((post) => res.status(200).json(post))
 		.catch((err) => res.status(500).json({ error: err }));
 });
+
+console.log("post controller, line 36");
 
 /*GET ENTRIES BY USER*/
 router.get("/mine", validateSession, function (req, res) {
