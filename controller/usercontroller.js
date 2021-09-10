@@ -1,7 +1,15 @@
 let router = require("express").Router();
 const User = require("../db").import("../models/user");
+const Post = require("../db").import("../models/post");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+
+/*GET USERS ENDPOINT */
+router.get("/", function (req, res) {
+	Post.findAll()
+		.then((post) => res.status(200).json(post))
+		.catch((err) => res.status(500).json({ error: err }));
+});
 
 /* REGISTER END POINT --->Allows a new user to be created with a username and password.
  */
