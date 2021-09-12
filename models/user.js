@@ -1,5 +1,9 @@
 module.exports = function (sequelize, DataTypes) {
 	const User = sequelize.define("user", {
+		profileImage: {
+			type: DataTypes.STRING(500),
+			allowNull: false,
+		},
 		firstName: {
 			type: DataTypes.STRING,
 			allowNull: false,
