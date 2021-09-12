@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 
 /*GET USERS ENDPOINT */
 router.get("/", function (req, res) {
-	Post.findAll()
+	User.findAll()
 		.then((post) => res.status(200).json(post))
 		.catch((err) => res.status(500).json({ error: err }));
 });
@@ -15,6 +15,7 @@ router.get("/", function (req, res) {
  */
 router.post("/create", function (req, res) {
 	User.create({
+		profileImage: req.body.user.profileImage,
 		firstName: req.body.user.firstName,
 		lastName: req.body.user.lastName,
 		email: req.body.user.email,
