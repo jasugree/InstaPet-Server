@@ -46,7 +46,7 @@ router.post("/login", function (req, res) {
 	console.log(process.env.JWT_SECRET);
 	User.findOne({
 		where: {
-			userName: req.body.user.userName,
+			email: req.body.user.email,
 		},
 	})
 		.then(function loginSuccess(user) {
