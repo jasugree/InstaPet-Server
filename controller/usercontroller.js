@@ -16,6 +16,7 @@ router.get("/", function (req, res) {
 router.post("/create", function (req, res) {
 	User.create({
 		profileImage: req.body.user.profileImage,
+		userName: req.body.user.userName,
 		firstName: req.body.user.firstName,
 		lastName: req.body.user.lastName,
 		email: req.body.user.email,
