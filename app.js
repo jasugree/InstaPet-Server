@@ -16,6 +16,6 @@ app.use("/user", user);
 
 app.use("/post", post);
 
-app.listen(3001, function () {
-  console.log("Listening on port 3001");
+app.listen(process.env.PORT, function () {
+	console.log("Listening on port 3001");
 });
