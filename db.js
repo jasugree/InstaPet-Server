@@ -4,12 +4,12 @@ require("dotenv").config();
 // Option 1: Passing parameters separately
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
 	dialect: "postgres",
-	dialectOptions: {
-		ssl: {
-			require: true,
-			rejectUnauthorized: false,
-		},
-	},
+	// dialectOptions: {
+	// 	ssl: {
+	// 		require: true,
+	// 		rejectUnauthorized: false,
+	// 	},
+	// },
 });
 
 sequelize
