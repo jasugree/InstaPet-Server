@@ -8,8 +8,6 @@ router.get("/practice", validateSession, function (req, res) {
   res.send("hey! This is a practice route!");
 });
 
-console.log("postcontroller, line 11");
-
 /*CREATING A POST*/
 router.post("/create", validateSession, function (req, res) {
   const postEntry = {
