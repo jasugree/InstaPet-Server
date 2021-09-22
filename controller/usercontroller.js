@@ -51,17 +51,34 @@ router.post("/login", function (req, res) {
 	})
 		.then(function loginSuccess(user) {
 			if (user) {
-				let token = jwt.sign(
-					{ id: user.id, email: user.email },
-					process.env.JWT_SECRET,
-					{ expiresIn: 60 * 60 * 24 }
-				);
+				bcrypt.compare(req.body.user.password, user.password, (err, match) => {
+					if (match) {
+						let token = jwt.sign(
+							{ id: user.id, email: user.email },
+							process.env.JWT_SECRET,
+							{ expiresIn: 60 * 60 * 24 }
+						);
 
-				res.status(200).json({
-					user: user,
-					message: "User successfully logged in!",
-					sessionToken: token,
+						res.status(200).json({
+							user: user,
+							message: "User successfully logged in!",
+							sessionToken: token,
+						});
+					} else {
+						res.status(403).json({ error: "Password is incorrect" });
+					}
 				});
+				// let token = jwt.sign(
+				// 	{ id: user.id, email: user.email },
+				// 	process.env.JWT_SECRET,
+				// 	{ expiresIn: 60 * 60 * 24 }
+				// );
+
+				// res.status(200).json({
+				// 	user: user,
+				// 	message: "User successfully logged in!",
+				// 	sessionToken: token,
+				// });
 			} else {
 				res.status(500).json({ error: "user does not exist." });
 			}
